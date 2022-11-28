@@ -1,0 +1,26 @@
+apiVersion: mlp.primer.ai/v1alpha1
+kind: ManifestSync
+metadata:
+  name: pushloccal-test
+  labels: {}
+spec:
+  sourceRepo:
+    org: jlewi
+    repo: hydros
+    branch: dev-takeover
+  forkRepo:
+    org: jlewi
+    repo: hydros-hydrated
+    branch: hydros/dev-takeover
+  destRepo:
+    org: jlewi
+    repo: hydros-hydrated
+    branch: main
+  selector:
+    matchLabels:
+      app: hydros
+      environment: dev
+  destPath: hydros
+status:
+  sourceUrl: https://github.com/jlewi/hydros/tree/dfae53c
+  sourceCommit: dfae53c
