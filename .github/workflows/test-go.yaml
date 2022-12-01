@@ -1,3 +1,8 @@
+# N.B. The purpose of this workflow was just so we could
+# test having a status check and how that worked with hydros ability
+# to merge PRs. Go may not be the best one to use as setting it up
+# can be slow
+#
 # A basic workflow for Go
 name: test-go
 on: [push]
@@ -10,9 +15,10 @@ jobs:
     # Must run on github hosted runners
     runs-on: [ubuntu-20.04]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
-        with:
-          go-version: '1.19.2' # The Go version to download (if necessary) and use.
-      - run: go test ./...
-      - run: go build ./cmd/...
+      - run: echo hello world
+      #- uses: actions/checkout@v3
+      #- uses: actions/setup-go@v3
+      #   with:
+      #     go-version: '1.19.2' # The Go version to download (if necessary) and use.
+      # - run: go test ./...
+      #- run: go build ./cmd/...
