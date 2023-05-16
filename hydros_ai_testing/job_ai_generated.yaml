@@ -1,0 +1,17 @@
+apiVersion: "workloadidentity.cnrm.cloud.google.com/v1beta1"
+kind: WorkloadIdentity
+metadata:
+  name: trainer-gcp-sa
+  annotations:
+    owner.hydros.io/: "{\"hash\":\"f5faf45dba60ad4c4a91f2b3a6e592e59837d858d2f5f5ff7f9bb794290ad47c\",\"prompt\":\"“Attach the GCP service account trainer with GCS and BigQuery edit permissions. Create the service account if it doesn’t exist”\",\"response\":\"{\\\"id\\\":\\\"chatcmpl-7GyWx6ab2gE0OaPFC4JLCfmCcO9ve\\\",\\\"object\\\":\\\"chat.completion\\\",\\\"created\\\":1684280283,\\\"model\\\":\\\"gpt-3.5-turbo-0301\\\",\\\"choices\\\":[{\\\"index\\\":0,\\\"finish_reason\\\":\\\"stop\\\",\\\"message\\\":{\\\"role\\\":\\\"assistant\\\",\\\"content\\\":\\\"Below is the corresponding YAML definition for the given natural language description using the custom resource schema provided:\\\\n\\\\n```\\\\napiVersion: \\\\\\\"workloadidentity.cnrm.cloud.google.com/v1beta1\\\\\\\"\\\\nkind: WorkloadIdentity\\\\nmetadata:\\\\n  name: trainer-gcp-sa\\\\nspec:\\\\n  gsa:\\\\n    create: true\\\\n    name: trainer@your-project-id.iam.gserviceaccount.com\\\\n    iamBindings:\\\\n      - \\\\\\\"roles/storage.objectAdmin\\\\\\\"\\\\n      - \\\\\\\"roles/bigquery.dataEditor\\\\\\\"\\\\n  ksa:\\\\n    create: false\\\\n    name: trainer-ksa\\\\n  requirement: \\\\\\\"Attach the GCP service account trainer with GCS and BigQuery edit permissions. Create the service account if it doesn't exist\\\\\\\"\\\\n```\\\\n\\\\nNote that the `name` field of `gsa` should be replaced with the actual name of the GCP service account. Also, `your-project-id` should be replaced with the actual GCP project ID.\\\"}}],\\\"usage\\\":{\\\"prompt_tokens\\\":465,\\\"completion_tokens\\\":195,\\\"total_tokens\\\":660}}\"}"
+spec:
+  gsa:
+    name: trainer@your-project-id.iam.gserviceaccount.com
+    create: true
+    iamBindings:
+    - "roles/storage.objectAdmin"
+    - "roles/bigquery.dataEditor"
+  ksa:
+    name: trainer-ksa
+    create: false
+  requirement: "Attach the GCP service account trainer with GCS and BigQuery edit permissions. Create the service account if it doesn't exist"
