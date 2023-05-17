@@ -1,0 +1,6 @@
+# Configure hydros. This is used for testing hydros
+kind: HydrosConfig
+spec:
+  inPlaceConfigs:
+  - baseBranch: main
+  - prBranch: hydros/inplace
