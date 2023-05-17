@@ -3,4 +3,4 @@ kind: HydrosConfig
 spec:
   inPlaceConfigs:
   - baseBranch: main
-  - prBranch: hydros/inplace
+    prBranch: hydros/inplace
