@@ -11,3 +11,4 @@ spec:
       - name: tensorflow
         image: tensorflow
         command: ["train.py"]
+
