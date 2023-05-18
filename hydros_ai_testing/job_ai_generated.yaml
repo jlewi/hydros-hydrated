@@ -1,0 +1,17 @@
+apiVersion: "v1"
+kind: "WorkloadIdentity"
+metadata:
+  name: "attach-gcs-bigquery"
+  annotations:
+    owner.hydros.io/: "{\"hash\":\"f5faf45dba60ad4c4a91f2b3a6e592e59837d858d2f5f5ff7f9bb794290ad47c\",\"prompt\":\"“Attach the GCP service account trainer with GCS and BigQuery edit permissions. Create the service account if it doesn’t exist”\",\"response\":\"{\\\"id\\\":\\\"chatcmpl-7Hd29js6IFAUEjCMjcRuNbXjBnK09\\\",\\\"object\\\":\\\"chat.completion\\\",\\\"created\\\":1684435977,\\\"model\\\":\\\"gpt-3.5-turbo-0301\\\",\\\"choices\\\":[{\\\"index\\\":0,\\\"finish_reason\\\":\\\"stop\\\",\\\"message\\\":{\\\"role\\\":\\\"assistant\\\",\\\"content\\\":\\\"Using the provided WorkloadIdentity custom resource, the YAML definition for this task would be:\\\\n\\\\n```\\\\napiVersion: \\\\\\\"v1\\\\\\\"\\\\nkind: \\\\\\\"WorkloadIdentity\\\\\\\"\\\\nmetadata:\\\\n  name: \\\\\\\"attach-gcs-bigquery\\\\\\\"\\\\nspec:\\\\n  gsa:\\\\n    create: true\\\\n    name: \\\\\\\"trainer\\\\\\\"\\\\n    iamBindings:\\\\n      - \\\\\\\"roles/bigquery.dataEditor\\\\\\\"\\\\n      - \\\\\\\"roles/storage.objectCreator\\\\\\\"\\\\n  ksa:\\\\n    create: true\\\\n    name: \\\\\\\"trainer\\\\\\\"\\\\n  requirement: \\\\\\\"Attach the GCP service account trainer with GCS and BigQuery edit permissions. Create the service account if it doesn't exist\\\\\\\"\\\\n```\\\\n\\\\nThis will create a Google service account called \\\\\\\"trainer\\\\\\\" if it doesn't exist, assigned the IAM roles \\\\\\\"roles/bigquery.dataEditor\\\\\\\" and \\\\\\\"roles/storage.objectCreator\\\\\\\", and bind it to a Kubernetes service account also called \\\\\\\"trainer\\\\\\\". The natural language description is also included as a requirement in the custom resource definition.\\\"}}],\\\"usage\\\":{\\\"prompt_tokens\\\":465,\\\"completion_tokens\\\":195,\\\"total_tokens\\\":660}}\"}"
+spec:
+  gsa:
+    name: "trainer"
+    create: true
+    iamBindings:
+    - "roles/bigquery.dataEditor"
+    - "roles/storage.objectCreator"
+  ksa:
+    name: "trainer"
+    create: true
+  requirement: "Attach the GCP service account trainer with GCS and BigQuery edit permissions. Create the service account if it doesn't exist"
