@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: WorkloadIdentity
+metadata:
+  name: my-workload-identity
+  annotations:
+    owner.hydros.io/: "{\"hash\":\"f5faf45dba60ad4c4a91f2b3a6e592e59837d858d2f5f5ff7f9bb794290ad47c\",\"prompt\":\"“Attach the GCP service account trainer with GCS and BigQuery edit permissions. Create the service account if it doesn’t exist”\",\"response\":\"{\\\"id\\\":\\\"chatcmpl-7Hhbpaqz5rwxFeQ32Ha3MK3u0zp2D\\\",\\\"object\\\":\\\"chat.completion\\\",\\\"created\\\":1684453565,\\\"model\\\":\\\"gpt-3.5-turbo-0301\\\",\\\"choices\\\":[{\\\"index\\\":0,\\\"finish_reason\\\":\\\"stop\\\",\\\"message\\\":{\\\"role\\\":\\\"assistant\\\",\\\"content\\\":\\\"Based on the provided schema for custom resources, here's the YAML definition for the desired configuration:\\\\n\\\\n```\\\\napiVersion: v1\\\\nkind: WorkloadIdentity\\\\nmetadata:\\\\n  name: my-workload-identity\\\\nspec:\\\\n  gsa:\\\\n    create: true\\\\n    name: trainer\\\\n    iamBindings:\\\\n      - roles/storage.objectAdmin\\\\n      - roles/bigquery.dataEditor\\\\n  ksa:\\\\n    create: false\\\\n    name: default\\\\n  requirement: Attach the GCP service account trainer with GCS and BigQuery edit permissions. Create the service account if it doesn’t exist\\\\n```\\\\n\\\\nThis will create a new workload identity resource that binds the Kubernetes Service Account `default` to the Google Service Account `trainer`, with IAM roles `roles/storage.objectAdmin` and `roles/bigquery.dataEditor` assigned to the GSA if they are not already assigned. If the Google Service Account doesn't exist, it will be created. The requirement for this resource is also defined in the `requirement` field.\\\"}}],\\\"usage\\\":{\\\"prompt_tokens\\\":465,\\\"completion_tokens\\\":208,\\\"total_tokens\\\":673}}\"}"
+spec:
+  gsa:
+    name: trainer
+    create: true
+    iamBindings:
+    - roles/storage.objectAdmin
+    - roles/bigquery.dataEditor
+  ksa:
+    name: default
+    create: false
+  requirement: Attach the GCP service account trainer with GCS and BigQuery edit permissions. Create the service account if it doesn’t exist
